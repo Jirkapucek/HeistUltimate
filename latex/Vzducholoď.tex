@@ -1,0 +1,248 @@
+\documentclass[reqno, a4paper]{amsart}
+\author{J. Púček, L. Košárková, M. Fuksa}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+\usepackage[scale=0.9]{geometry}
+\usepackage{mathbbol}
+
+\usepackage[utf8]{inputenc}
+\usepackage[czech]{babel}
+
+\usepackage{subfig}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage[font=small,labelfont=bf]{caption}
+\usepackage{graphicx,wrapfig}
+
+\input{vit-prusa-macros-experimental}
+\input{navigation-macros}
+
+\title{Pohyb Vzducholod\v{E} v lineárním v\v{E}trném poli}
+\renewcommand{\contentsname}{Obsah}
+\renewcommand{\abstractname}{Abstrakt}
+
+\begin{document}
+\maketitle
+\section{Teoretický postup}
+\label{sec:teorie}
+V případě větrného pole závislého lineárně na pozici se problém hledání nejkratšího letu výrazně zjednoduší. \\
+Uvažujme tedy následující větrné pole:
+\begin{subequations}
+  \label{eq:56}
+  \begin{align}
+    \label{eq:57}
+    u &= - \frac{V}{h}y, \\
+    \label{eq:58}
+    v &= 0.
+  \end{align}
+\end{subequations}
+Pro toto speciální pole se náš systém diferenciálních rovnic zredukuje na:
+\begin{subequations}
+  \label{eq:59}
+  \begin{align}
+    \label{eq:60}
+    \dd{x_{\navext}}{t}
+    &=
+      V \cos \beta_{\navext} - \frac{V}{h}y_{\navext},  \\
+    \label{eq:61}
+    \dd{y_{\navext}}{t}
+    &=
+      V \sin \beta_{\navext},  \\
+    \label{eq:62}
+    \dd{\beta_\navext}{t}
+    &=
+      \frac{V}{h}
+      \cos^2 \beta_\navext
+      .
+  \end{align}
+\end{subequations}
+Kde poslední rovnici lze vyřešit explicitně pomocí separace proměnných,
+\begin{equation}
+  \label{eq:63}
+  \tan \beta_{\navext} -  \tan \beta_{\navext, \navend} = \frac{V}{h} (t - t_{\navend, \navext}), 
+\end{equation}
+kde jsme využili následující značení $\beta_{\navext, \navend} = _{\bydefinition} \left. \beta_{\navext} \right|_{t = t_{\navend, \navext}} $. (Řešení rozepisujeme záměrně tak aby obsahovalo konečný čas, protože ten je co chceme.) Jelikož $\beta_{\navext}$ je ryze rostoucí funkcí času $t$, tak můžeme provést záměnu proměnných a přepsat ~\eqref{eq:61} jako
+$
+  \dd{y_{\navext}}{\beta_{\navext}} \dd{\beta_{\navext}}{t}
+  =
+  V \sin \beta_{\navext}
+$,
+což vede na
+\begin{equation}
+  \label{eq:64}
+  \dd{y_{\navext}}{\beta_{\navext}} = h \frac{\sin \beta_{\navext}}{\cos^2 \beta_{\navext}}.
+\end{equation}
+Důsledkem toho je, že můžeme také vyřešit rovnici pro $y_{\navext}$
+\begin{equation}
+  \label{eq:65}
+  y_{\navext}(\beta_{\navext})
+  =
+  h
+  \left(
+    \frac{1}{\cos \beta_{\navext}}
+    -
+    \frac{1}{\cos \beta_{\navext, \navend}}
+  \right)
+  .
+\end{equation}
+(Pro zjednodušení si určíme konečnou polohu v počátku souřadnic, díky tomu dostáváme $y_{\navext}(\beta_{\navext, \navend}) = 0$.)
+Nyní provedeme podobnou záměnu proměnných jako která vedla k rovnici ~\eqref{eq:65}, ale aplikovanou na ~\eqref{eq:60}, dostáváme
+\begin{equation}
+  \label{eq:66}
+  \dd{x_{\navext}}{\beta_{\navext}}
+  =
+  h
+  \left(
+    \frac{1}{\cos \beta_{\navext}}
+    -
+    \frac{1}{\cos^3 \beta_{\navext}}
+    +
+    \frac{1}{\cos^2 \beta_{\navext} \cos \beta_{\navext, \navend}}
+  \right)
+  ,
+\end{equation}
+což implikuje
+\begin{equation}
+  \label{eq:67}
+  x_{\navext}(\beta_{\navext})
+  =
+  h
+  \left(
+    \frac{1}{2}
+    \ln
+    \frac{\cos \frac{\beta_{\navext}}{2} + \sin \frac{\beta_{\navext}}{2}}{\cos \frac{\beta_{\navext}}{2} - \sin \frac{\beta_{\navext}}{2}}
+    -
+    \frac{1}{2}
+    \ln
+    \frac{\cos \frac{\beta_{\navext, \navend}}{2} + \sin \frac{\beta_{\navext, \navend}}{2}}{\cos \frac{\beta_{\navext, \navend}}{2} - \sin \frac{\beta_{\navext, \navend}}{2}}
+    +
+    \left(
+      \frac{1}{\cos \beta_{\navext, \navend}}
+      -
+      \frac{1}{\cos \beta_{\navext}}
+    \right)
+    \frac{\sin \beta_{\navext}}{\cos \beta_{\navext}}
+  \right)
+  ,
+\end{equation}
+v předchozím jsme znovu využily faktu, že konečná poloha je v počátku, takže platí: $x_{\navext}(\beta_{\navext, \navend}) = 0$. Nyní sjednotíme rovnici ~\eqref{eq:67} a ~\eqref{eq:65}. Počáteční pozice musí splňovat $ \left. \vec{x} \right|_{t=t_\navstart} = _{\bydefinition} \vec{x}_{\navstart}$, takže dostáváme následující systém rovnic
+\begin{equation}
+  \label{eq:68}
+  \vec{x}_{\navstart}
+  =
+  \begin{bmatrix}
+    h
+  \left(
+    \frac{1}{\cos \beta_{\navext, \navstart}}
+    -
+    \frac{1}{\cos \beta_{\navext, \navend}}
+  \right)
+  \\
+  h
+  \left(
+    \frac{1}{2}
+    \ln
+    \frac{\cos \frac{\beta_{\navext, \navstart}}{2} + \sin \frac{\beta_{\navext, \navstart}}{2}}{\cos \frac{\beta_{\navext, \navstart}}{2} - \sin \frac{\beta_{\navext, \navstart}}{2}}
+    -
+    \frac{1}{2}
+    \ln
+    \frac{\cos \frac{\beta_{\navext, \navend}}{2} + \sin \frac{\beta_{\navext, \navend}}{2}}{\cos \frac{\beta_{\navext, \navend}}{2} - \sin \frac{\beta_{\navext, \navend}}{2}}
+    +
+    \left(
+      \frac{1}{\cos \beta_{\navext, \navend}}
+      -
+      \frac{1}{\cos \beta_{\navext, \navstart}}
+    \right)
+    \frac{\sin \beta_{\navext, \navstart}}{\cos \beta_{\navext, \navstart}}
+  \right)
+\end{bmatrix}
+.
+\end{equation}
+Jelikož známe $\vec{x}_{\navstart}$, tak je nám jasné, že ~\eqref{eq:68} je systém dvou nelineárních algebraických rovnic pro dvě neznámé: $\beta_{\navext, \navend}$ a $\beta_{\navext, \navstart}$. Jakmile získáme jejich hodnoty, tak už jen stačí použít rovnice ~\eqref{eq:63} k získání konečného času.
+
+Ve výsledku můžeme prohlásit, že k vyřešení problému pro dané $V$, $h$ a $\vec{x}_{\navstart} =_{\bydefinition} \transpose{
+  \begin{bmatrix}
+    x_{\navstart} &
+    y_{\navstart}
+  \end{bmatrix}
+}$
+stačí první vyřešit náš systém nelineárních algebraických rovnic
+\begin{subequations}
+  \label{eq:69}
+  \begin{equation}
+    \label{eq:70}
+  \begin{bmatrix}
+    x_{\navstart} \\
+    y_{\navstart}
+  \end{bmatrix}
+  =
+  \begin{bmatrix}
+    h
+  \left(
+    \frac{1}{\cos \beta_{\navext, \navstart}}
+    -
+    \frac{1}{\cos \beta_{\navext, \navend}}
+  \right)
+  \\
+  h
+  \left(
+    \frac{1}{2}
+    \ln
+    \frac{\cos \frac{\beta_{\navext, \navstart}}{2} + \sin \frac{\beta_{\navext, \navstart}}{2}}{\cos \frac{\beta_{\navext, \navstart}}{2} - \sin \frac{\beta_{\navext, \navstart}}{2}}
+    -
+    \frac{1}{2}
+    \ln
+    \frac{\cos \frac{\beta_{\navext, \navend}}{2} + \sin \frac{\beta_{\navext, \navend}}{2}}{\cos \frac{\beta_{\navext, \navend}}{2} - \sin \frac{\beta_{\navext, \navend}}{2}}
+    +
+    \left(
+      \frac{1}{\cos \beta_{\navext, \navend}}
+      -
+      \frac{1}{\cos \beta_{\navext, \navstart}}
+    \right)
+    \frac{\sin \beta_{\navext, \navstart}}{\cos \beta_{\navext, \navstart}}
+  \right)
+  ,
+\end{bmatrix}
+\end{equation}
+\clearpage
+z něho získáme hodnoty $\beta_{\navext, \navstart}$ a $\beta_{\navext, \navend}$. V rovnici
+\begin{equation}
+  \label{eq:71}
+  \tan \beta_{\navext, \navstart} -  \tan \beta_{\navext, \navend} = \frac{V}{h} (t_{\navstart} - t_{\navend, \navext})
+\end{equation}
+následně najdeme hodnotu konečného času $t_{\navend, \navext}$. Optimální trajektorie je poté jednoznačně určena jako řešení následujícího systému ODR 1. řádu:
+  \begin{align}
+    \label{eq:72}
+    \dd{x_{\navext}}{t}
+    &=
+      V \cos \beta_{\navext} - \frac{V}{h}y_{\navext},  \\
+    \label{eq:73}
+    \dd{y_{\navext}}{t}
+    &=
+      V \sin \beta_{\navext},  \\
+    \label{eq:74}
+    \dd{\beta_\navext}{t}
+    &=
+      \frac{V}{h}
+      \cos^2 \beta_\navext
+      ,
+  \end{align}
+které řešíme na časovém intervalu $t \in (t_{\navstart}, t_{\navend, \navext})$ v souladu s počátečními podmínkami:
+  \begin{align}
+    \label{eq:75}
+    \left. x_{\navext} \right|_{t= t_{\navstart}} &=  x_{\navstart}, \\
+    \label{eq:76}
+    \left. y_{\navext} \right|_{t= t_{\navstart}} &=  y_{\navstart}, \\
+    \label{eq:77}
+    \left. \beta_{\navext} \right|_{t= t_{\navstart}} &=  \beta_{\navext, \navstart}.
+  \end{align}
+\end{subequations}
+Problém~\eqref{eq:69} lze vyřešit standardními numerickými metodami.
+
+\section{Konkrétní řešení v programu Mathematica}
+\label{sec:Mathematica}
+
+
+\end{document}
