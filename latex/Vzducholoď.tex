@@ -133,13 +133,6 @@ v předchozím jsme znovu využily faktu, že konečná poloha je v počátku, t
   \vec{x}_{\navstart}
   =
   \begin{bmatrix}
-    h
-  \left(
-    \frac{1}{\cos \beta_{\navext, \navstart}}
-    -
-    \frac{1}{\cos \beta_{\navext, \navend}}
-  \right)
-  \\
   h
   \left(
     \frac{1}{2}
@@ -156,6 +149,13 @@ v předchozím jsme znovu využily faktu, že konečná poloha je v počátku, t
       \frac{1}{\cos \beta_{\navext, \navstart}}
     \right)
     \frac{\sin \beta_{\navext, \navstart}}{\cos \beta_{\navext, \navstart}}
+  \right)
+\\
+    h
+  \left(
+    \frac{1}{\cos \beta_{\navext, \navstart}}
+    -
+    \frac{1}{\cos \beta_{\navext, \navend}}
   \right)
 \end{bmatrix}
 .
@@ -179,13 +179,6 @@ stačí první vyřešit náš systém nelineárních algebraických rovnic
   \end{bmatrix}
   =
   \begin{bmatrix}
-    h
-  \left(
-    \frac{1}{\cos \beta_{\navext, \navstart}}
-    -
-    \frac{1}{\cos \beta_{\navext, \navend}}
-  \right)
-  \\
   h
   \left(
     \frac{1}{2}
@@ -203,8 +196,15 @@ stačí první vyřešit náš systém nelineárních algebraických rovnic
     \right)
     \frac{\sin \beta_{\navext, \navstart}}{\cos \beta_{\navext, \navstart}}
   \right)
-  ,
+\\
+    h
+  \left(
+    \frac{1}{\cos \beta_{\navext, \navstart}}
+    -
+    \frac{1}{\cos \beta_{\navext, \navend}}
+  \right)
 \end{bmatrix}
+,
 \end{equation}
 \clearpage
 z něho získáme hodnoty $\beta_{\navext, \navstart}$ a $\beta_{\navext, \navend}$. V rovnici
