@@ -108,22 +108,23 @@ což implikuje
   \label{eq:67}
   x_{\navext}(\beta_{\navext})
   =
-  h
+-
+  \frac{h}{2}
   \left(
-    \frac{1}{2}
-    \ln
-    \frac{\cos \frac{\beta_{\navext}}{2} + \sin \frac{\beta_{\navext}}{2}}{\cos \frac{\beta_{\navext}}{2} - \sin \frac{\beta_{\navext}}{2}}
-    -
-    \frac{1}{2}
     \ln
     \frac{\cos \frac{\beta_{\navext, \navend}}{2} + \sin \frac{\beta_{\navext, \navend}}{2}}{\cos \frac{\beta_{\navext, \navend}}{2} - \sin \frac{\beta_{\navext, \navend}}{2}}
+-
+    \ln
+    \frac{\cos \frac{\beta_{\navext}}{2} + \sin \frac{\beta_{\navext}}{2}}{\cos \frac{\beta_{\navext}}{2} - \sin \frac{\beta_{\navext}}{2}}
     +
     \left(
-      \frac{1}{\cos \beta_{\navext, \navend}}
-      -
       \frac{1}{\cos \beta_{\navext}}
+      -
+      \frac{2}{\cos \beta_{\navext, \navend}}
     \right)
-    \frac{\sin \beta_{\navext}}{\cos \beta_{\navext}}
+    \tan\beta_{\navext}
++
+ \frac{ \tan\beta_{\navext, \navend}}{\cos \beta_{\navext, \navend}}
   \right)
   ,
 \end{equation}
@@ -133,23 +134,24 @@ v předchozím jsme znovu využily faktu, že konečná poloha je v počátku, t
   \vec{x}_{\navstart}
   =
   \begin{bmatrix}
-  h
+ -
+  \frac{h}{2}
   \left(
-    \frac{1}{2}
-    \ln
-    \frac{\cos \frac{\beta_{\navext, \navstart}}{2} + \sin \frac{\beta_{\navext, \navstart}}{2}}{\cos \frac{\beta_{\navext, \navstart}}{2} - \sin \frac{\beta_{\navext, \navstart}}{2}}
-    -
-    \frac{1}{2}
     \ln
     \frac{\cos \frac{\beta_{\navext, \navend}}{2} + \sin \frac{\beta_{\navext, \navend}}{2}}{\cos \frac{\beta_{\navext, \navend}}{2} - \sin \frac{\beta_{\navext, \navend}}{2}}
+-
+    \ln
+    \frac{\cos \frac{\beta_{\navext, \navstart}}{2} + \sin \frac{\beta_{\navext, \navstart}}{2}}{\cos \frac{\beta_{\navext, \navstart}}{2} - \sin \frac{\beta_{\navext, \navstart}}{2}}
     +
     \left(
-      \frac{1}{\cos \beta_{\navext, \navend}}
-      -
       \frac{1}{\cos \beta_{\navext, \navstart}}
+      -
+      \frac{2}{\cos \beta_{\navext, \navend}}
     \right)
-    \frac{\sin \beta_{\navext, \navstart}}{\cos \beta_{\navext, \navstart}}
-  \right)
+    \tan\beta_{\navext, \navstart}
++
+ \frac{ \tan\beta_{\navext, \navend}}{\cos \beta_{\navext, \navend}}
+\right)
 \\
     h
   \left(
@@ -179,22 +181,23 @@ stačí první vyřešit náš systém nelineárních algebraických rovnic
   \end{bmatrix}
   =
   \begin{bmatrix}
-  h
+ -
+  \frac{h}{2}
   \left(
-    \frac{1}{2}
-    \ln
-    \frac{\cos \frac{\beta_{\navext, \navstart}}{2} + \sin \frac{\beta_{\navext, \navstart}}{2}}{\cos \frac{\beta_{\navext, \navstart}}{2} - \sin \frac{\beta_{\navext, \navstart}}{2}}
-    -
-    \frac{1}{2}
     \ln
     \frac{\cos \frac{\beta_{\navext, \navend}}{2} + \sin \frac{\beta_{\navext, \navend}}{2}}{\cos \frac{\beta_{\navext, \navend}}{2} - \sin \frac{\beta_{\navext, \navend}}{2}}
+-
+    \ln
+    \frac{\cos \frac{\beta_{\navext}}{2} + \sin \frac{\beta_{\navext}}{2}}{\cos \frac{\beta_{\navext}}{2} - \sin \frac{\beta_{\navext}}{2}}
     +
     \left(
-      \frac{1}{\cos \beta_{\navext, \navend}}
+      \frac{1}{\cos \beta_{\navext}}
       -
-      \frac{1}{\cos \beta_{\navext, \navstart}}
+      \frac{2}{\cos \beta_{\navext, \navend}}
     \right)
-    \frac{\sin \beta_{\navext, \navstart}}{\cos \beta_{\navext, \navstart}}
+    \tan\beta_{\navext}
++
+ \frac{ \tan\beta_{\navext, \navend}}{\cos \beta_{\navext, \navend}}
   \right)
 \\
     h
