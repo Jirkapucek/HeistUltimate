@@ -182,30 +182,30 @@ stačí první vyřešit náš systém nelineárních algebraických rovnic
   =
   \begin{bmatrix}
  -
-  \frac{h}{2}
-  \left(
-    \ln
-    \frac{\cos \frac{\beta_{\navext, \navend}}{2} + \sin \frac{\beta_{\navext, \navend}}{2}}{\cos \frac{\beta_{\navext, \navend}}{2} - \sin \frac{\beta_{\navext, \navend}}{2}}
--
-    \ln
-    \frac{\cos \frac{\beta_{\navext}}{2} + \sin \frac{\beta_{\navext}}{2}}{\cos \frac{\beta_{\navext}}{2} - \sin \frac{\beta_{\navext}}{2}}
-    +
-    \left(
-      \frac{1}{\cos \beta_{\navext}}
-      -
-      \frac{2}{\cos \beta_{\navext, \navend}}
-    \right)
-    \tan\beta_{\navext}
-+
+ \frac{h}{2}
+ \left(
+ \ln
+ \frac{\cos \frac{\beta_{\navext, \navend}}{2} + \sin \frac{\beta_{\navext, \navend}}{2}}{\cos \frac{\beta_{\navext, \navend}}{2} - \sin \frac{\beta_{\navext, \navend}}{2}}
+ -
+ \ln
+ \frac{\cos \frac{\beta_{\navext, \navstart}}{2} + \sin \frac{\beta_{\navext, \navstart}}{2}}{\cos \frac{\beta_{\navext, \navstart}}{2} - \sin \frac{\beta_{\navext, \navstart}}{2}}
+ +
+ \left(
+ \frac{1}{\cos \beta_{\navext, \navstart}}
+ -
+ \frac{2}{\cos \beta_{\navext, \navend}}
+ \right)
+ \tan\beta_{\navext, \navstart}
+ +
  \frac{ \tan\beta_{\navext, \navend}}{\cos \beta_{\navext, \navend}}
-  \right)
-\\
-    h
-  \left(
-    \frac{1}{\cos \beta_{\navext, \navstart}}
-    -
-    \frac{1}{\cos \beta_{\navext, \navend}}
-  \right)
+ \right)
+ \\
+ h
+ \left(
+ \frac{1}{\cos \beta_{\navext, \navstart}}
+ -
+ \frac{1}{\cos \beta_{\navext, \navend}}
+ \right)
 \end{bmatrix}
 ,
 \end{equation}
@@ -253,9 +253,9 @@ Vyřešíme nelineární algebraickou soustavu dvou rovnic o dvou neznámých $\
 \begin{verbatim*}
 	FindRoot[{-(h/2)*(Log[(Cos[be/2]+Sin[be/2])/(Cos[be/2]-Sin[be/2])]-
 		Log[(Cos[bs/2]+Sin[bs/2])/(Cos[bs/2]-Sin[bs/2])]+(1/Cos[bs]-2/Cos[be])*Tan[bs]+Tan[be]/Cos[be])==x0,
-		h*((1/(Cos[bs])-1/Cos[be]))==y0},{{bs,0},{be,0}}],
+		h*((1/(Cos[bs])-1/Cos[be]))==y0},{{bs,a},{be,b}}],
 \end{verbatim*}
-kde $be$ a $bs$ jsou značení pro $\beta_{\navext, \navend}$ a $\beta_{\navext, \navstart}$.
+kde $be$ a $bs$ jsou značení pro $\beta_{\navext, \navend}$ a $\beta_{\navext, \navstart}$ a parametry $a$ a $b$ volíme vhodně tak, aby řešení zkonvergovalo do počátku.
 \subsection*{Krok 2}
 Vypočítáme $t_{\navend, \navext}$ z rovnice ~\eqref{eq:71} pomocí příkázu
 \begin{verbatim*}
@@ -273,7 +273,7 @@ Nyní máme všechny počáteční podmínky a stačí vyřešit soustavu rovnic
 \subsection*{Krok 4}
 Vykreslíme graf a blaženě pozorujeme, jak se nám to povedlo (viz obrázky).
 \begin{verbatim*}
-	trajektorie=ParametricPlot[{x[t],y[t]}/.sol,{t,ts,te}, Frame->True,GridLines->Automatic,PlotRange->
+	trajektorie=ParametricPlot[{x[t],y[t]}/.sol,{t,ts,te},Frame->True,GridLines->Automatic,PlotRange->
 	{{-10,10},{-10,10}}]
 	
 	Show[field,trajektorie]
@@ -282,12 +282,12 @@ Vykreslíme graf a blaženě pozorujeme, jak se nám to povedlo (viz obrázky).
 	\begin{minipage}[b]{0.5\textwidth}
 		\centering
 		\includegraphics[width=0.9\textwidth]{lodka1}
-		\captionof*{figure}{\textbf{Obrázek 1.} $x_0=8, y_0=0$}
+		\captionof*{figure}{\textbf{Obrázek 1.} $x_0=8, y_0=0, V = 8,h=15$}
 	\end{minipage}
 	\begin{minipage}[b]{0.5\textwidth}
 		\centering
 		\includegraphics[width=0.9\textwidth]{lodka2}
-		\captionof*{figure}{\textbf{Obrázek 2.} $x_0=-2, y_0=5$}
+		\captionof*{figure}{\textbf{Obrázek 2.} $x_0=-2, y_0=5, V = 2, h=15$}
 	\end{minipage}
 	\hfill
 \end{minipage}
@@ -382,7 +382,7 @@ Ve výpočtu se nám objevila zajímavá identita $\cos \arctan$, pro kterou pla
 	\right)=h\left(\sqrt{\epsilon^2+1}-\frac{1}{\cos \beta_{\navext, \navend}}
 	\right)
 \end{equation}
-Tedy jsme ukázali, že řešení se pohybuje symetricky podle času $t=\frac{ t_{\navend, \navext}}{2}$. To ovšem nedává tvrzení, jelikož nevíme, jak se řešení chová pro $x$-ovou souřadnici. Ta je ovšem analyticky složitá na řešení, avšak máme jiný způsob, jak získat dodatečnou onformaci a to pomocí okamžitého natočení $\beta_{\navext}(t)$, kterou jsme si při výpočtu odvodili.\\
+Tedy jsme ukázali, že řešení se pohybuje symetricky podle času $t=\frac{ t_{\navend, \navext}}{2}$. To ovšem nedává tvrzení, jelikož nevíme, jak se řešení chová pro $x$-ovou souřadnici. Ta je ovšem analyticky složitá na řešení, avšak máme jiný způsob, jak získat dodatečnou informaci a to pomocí okamžitého natočení $\beta_{\navext}(t)$, kterou jsme si při výpočtu odvodili.\\
 Aby naše tvrzení bylo dokázáno musíme ukázat, že platí $\beta_{\navext}(\frac{ t_{\navend, \navext}}{2}+\epsilon)=-\beta_{\navext}(\frac{ t_{\navend, \navext}}{2}-\epsilon)$. To již není žádný problém, jelikož platí
 \begin{equation*}
 	\beta_{\navext}\left( \frac{ t_{\navend, \navext}}{2}\pm\epsilon\right) =\arctan\left( \frac{V}{h}\left( \frac{ \frac{2h}{V}\tan\beta_{\navext, \navend}}{2}\pm\epsilon\right) - \tan \beta_{\navext, \navend}\right) 
