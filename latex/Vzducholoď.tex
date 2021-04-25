@@ -247,5 +247,142 @@ Problém~\eqref{eq:69} lze vyřešit standardními numerickými metodami.
 \section{Konkrétní řešení v programu Mathematica}
 \label{sec:Mathematica}
 
+Pro náš speciální případ pole~\eqref{eq:56} postupujeme, jak je popsáno výše tedy:
+\subsection*{Krok 1}
+Vyřešíme nelineární algebraickou soustavu dvou rovnic o dvou neznámých $\beta_{\navext, \navstart}$ a $\beta_{\navext, \navend}$. Rovnici ~\eqref{eq:70} vyřešíme pomocí příkazu
+\begin{verbatim*}
+	FindRoot[{-(h/2)*(Log[(Cos[be/2]+Sin[be/2])/(Cos[be/2]-Sin[be/2])]-
+		Log[(Cos[bs/2]+Sin[bs/2])/(Cos[bs/2]-Sin[bs/2])]+(1/Cos[bs]-2/Cos[be])*Tan[bs]+Tan[be]/Cos[be])==x0,
+		h*((1/(Cos[bs])-1/Cos[be]))==y0},{{bs,0},{be,0}}],
+\end{verbatim*}
+kde $be$ a $bs$ jsou značení pro $\beta_{\navext, \navend}$ a $\beta_{\navext, \navstart}$.
+\subsection*{Krok 2}
+Vypočítáme $t_{\navend, \navext}$ z rovnice ~\eqref{eq:71} pomocí příkázu
+\begin{verbatim*}
+	Solve[{Tan[bs]-Tan[be]==(V/h)*(ts-te)}/.bsbe,te].
+\end{verbatim*}
+\subsection*{Krok 3}
+Nyní máme všechny počáteční podmínky a stačí vyřešit soustavu rovnic ~\eqref{eq:72} až ~\eqref{eq:74} s počátečními podmínkami ~\eqref{eq:75} až ~\eqref{eq:77}. Využijme příkazu
+\begin{verbatim*}
+	eqs={x'[t]==V*Cos[b[t]]-(V/h)*y[t],y'[t]==V*Sin[b[t]],b'[t]==(V/h)*(Cos[b[t]])^2}
+	
+	time={t,ts,Re[te/.tend]}
+	
+	sol=NDSolve[Join[eqs,{x[0]==x0,y[0]==y0,b[0]==Re[bs/.bsbe]}],{x[t],y[t],b[t]},time].
+\end{verbatim*}
+\subsection*{Krok 4}
+Vykreslíme graf a blaženě pozorujeme, jak se nám to povedlo (viz obrázky).
+\begin{verbatim*}
+	trajektorie=ParametricPlot[{x[t],y[t]}/.sol,{t,ts,te}, Frame->True,GridLines->Automatic,PlotRange->
+	{{-10,10},{-10,10}}]
+	
+	Show[field,trajektorie]
+\end{verbatim*}
+\begin{minipage}{\textwidth}
+	\begin{minipage}[b]{0.5\textwidth}
+		\centering
+		\includegraphics[width=0.9\textwidth]{lodka1}
+		\captionof*{figure}{\textbf{Obrázek 1.} $x_0=8, y_0=0$}
+	\end{minipage}
+	\begin{minipage}[b]{0.5\textwidth}
+		\centering
+		\includegraphics[width=0.9\textwidth]{lodka2}
+		\captionof*{figure}{\textbf{Obrázek 2.} $x_0=-2, y_0=5$}
+	\end{minipage}
+	\hfill
+\end{minipage}
+\subsection*{Počáteční podmínka $y_0=0$}
+Všimněme si, že případ na obrázku (2) přejde pro $y=0$ na úlohu případu obrázku (1). Tento závěr není nijak překvapivý, protože pro tento model nepředpokládáme žádné zpoždění zatáčení a navíc její rychlost je čistě dána její polohou a parametry $V$ a $h$ (tedy v tomto systému nepředpokládáme žádné "nabrání" kinetické energie z předchozí části trajektorie). Rovněž není překvapivé, že pro $y_0=0$ je ideální trajektorie symetrická podle osy $x=\frac{x_0}{2}$. Toto tvrzení si nyní dokažme.\\
+\\
+(pozn. tento důkaz stojí na předpokladu, že se objekt pohybuje symetricky pro osu $x$, ovšem předpis $x$-ové souřadnice je i v tomto jednoduchém silovém poly velmi složitý, proto ho nebudeme zkoumat a pouze tuto krásnou vlastnost předpokládejme)\\
+\\
+Z informace $y_0=0$ a vztahu ~\eqref{eq:70} dostáváme
+\begin{equation}
+	\label{eq:75}
+	\frac{1}{\cos\beta_{\navext, \navend}} = \frac{1}{\cos\beta_{\navext, \navstart}} \equiv  \cos\beta_{\navext, \navend} = \cos\beta_{\navext, \navstart}.
+\end{equation}
+Nyní využijme fyzikálního nadhledu. Jelikož se pohybujeme po symetrickém oválu musí platit
+\begin{equation}
+	\label{eq:76}
+	\beta_{\navext, \navend}=-\beta_{\navext, \navstart}.
+\end{equation}
+Dále využijme toho, že $\tan x$ je lichá funkce. S tímto poznatkem a vztahy ~\eqref{eq:71}, ~\eqref{eq:76} dostáváme, že pro $t_{\navend, \navext}$ volbou $t_{\navstart}=0$ platí
+\begin{equation*}
+	\tan \beta_{\navext, \navstart} -  \tan \beta_{\navext, \navend} = -\tan \beta_{\navext, \navend} -  \tan \beta_{\navext, \navend}=-2\tan \beta_{\navext, \navend}
+	=\frac{V}{h} (t_{\navstart} - t_{\navend, \navext})=-\frac{V}{h} t_{\navend, \navext} \implies
+\end{equation*}
+\begin{equation}
+	\label{eq:77}
+	t_{\navend, \navext}=\frac{2h}{V}\tan \beta_{\navext, \navend}.
+\end{equation}
+Opět využijme vztahu ~\eqref{eq:71} a vyjádřeme $\beta$ jako $\beta (t)$
+\begin{equation*}
+	\tan \beta_\navext = \frac{V}{h}(t-t_{\navend, \navext})+\tan \beta_{\navext, \navend}=\frac{V}{h}(t-\frac{2h}{V}\tan \beta_{\navext, \navend})+\tan \beta_{\navext, \navend}=\frac{V}{h}t - \tan \beta_{\navext, \navend} \implies
+\end{equation*}
+\begin{equation}
+	\label{eq:78}
+	\beta_\navext=\arctan(\frac{V}{h}t - \tan \beta_{\navext, \navend}).
+\end{equation}
+V závěrečné fázi našeho dokazování si pomocí funkce $y(\beta_\navext)$, kterou si vyjádříme jako $y(t)$, ukážeme, že je symetrická podle času $\frac{t_{\navend, \navext}}{2}$, tedy že platí $y(\frac{t_{\navend, \navext}}{2}+\epsilon)=y(\frac{t_{\navend, \navext}}{2}-\epsilon)$.\\
+Začněme vyjádřením $y=y(t)$ ze vztahu ~\eqref{eq:65}
+\begin{equation}
+	\label{eq:79}
+	y(\beta_\navext(t))=h
+	\left(
+	\frac{1}{\cos \beta_{\navext}(t)}
+	-
+	\frac{1}{\cos \beta_{\navext, \navend}}
+	\right)=h
+	\left(
+	\frac{1}{\cos \arctan(\frac{V}{h}t - \tan \beta_{\navext, \navend})}
+	-
+	\frac{1}{\cos \beta_{\navext, \navend}}
+	\right)=
+\end{equation}
+\begin{equation*}
+	=h
+	\left(
+	\frac{1}{\cos \arctan(\frac{V}{h}t - \tan \beta_{\navext, \navend})}
+	-
+	\frac{1}{\cos \beta_{\navext, \navend}}
+	\right)=h\left(
+	\sqrt{\left( \frac{V}{h}t-\tan \beta_{\navext, \navend}\right)^2 + 1 }
+	-
+	\frac{1}{\cos \beta_{\navext, \navend}}
+	\right) \implies
+\end{equation*}
+\begin{equation}
+	\label{eq:80}
+	y(t)=h\left(
+	\sqrt{\left( \frac{V}{h}t-\tan \beta_{\navext, \navend}\right)^2 + 1 }
+	-
+	\frac{1}{\cos \beta_{\navext, \navend}}
+	\right).
+\end{equation}
+Ve výpočtu se nám objevila zajímavá identita $\cos \arctan$, pro kterou platí $\cos \arctan (x)=\frac{1}{\sqrt{x^2+1}}$. Nyní nám už zbývá dosadit hodnotu $t = \frac{ t_{\navend, \navext}}{2}\pm\epsilon$ do $y(t)$.
+\begin{equation*}
+	y\left( \frac{ t_{\navend, \navext}}{2}\pm\epsilon\right) =h\left(
+	\sqrt{\left( \frac{V}{h}\left( \frac{ t_{\navend, \navext}}{2}\pm\epsilon\right) -\tan \beta_{\navext, \navend}\right)^2 + 1 }
+	-
+	\frac{1}{\cos \beta_{\navext, \navend}}
+	\right)=
+\end{equation*}
+\begin{equation*}
+	=h\left(
+	\sqrt{\left( \frac{V}{h}\left( \frac{\frac{2h}{V}\tan\beta_{\navext, \navend}}{2}\pm\epsilon\right) -\tan \beta_{\navext, \navend}\right)^2 + 1 }
+	-
+	\frac{1}{\cos \beta_{\navext, \navend}}
+	\right)=
+\end{equation*}
+\begin{equation}
+	\label{eq:80}
+	=h\left(
+	\sqrt{\left( \tan \beta_{\navext, \navend}\pm\epsilon -\tan \beta_{\navext, \navend}\right)^2 + 1 }
+	-
+	\frac{1}{\cos \beta_{\navext, \navend}}
+	\right)=h\left(\sqrt{\epsilon^2+1}-\frac{1}{\cos \beta_{\navext, \navend}}
+	\right)
+\end{equation}
+Tedy jsme dokázali, že řešení je symetrické podle bodu $x=\frac{x_0}{2}$ respektive podle času $t = \frac{ t_{\navend, \navext}}{2}$, kdy (podle fyzikálních představ) osu $x=\frac{x_0}{2}$ protíná. $\qed$
 
 \end{document}
