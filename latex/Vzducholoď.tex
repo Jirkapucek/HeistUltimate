@@ -294,8 +294,7 @@ Vykreslíme graf a blaženě pozorujeme, jak se nám to povedlo (viz obrázky).
 \subsection*{Počáteční podmínka $y_0=0$}
 Všimněme si, že případ na obrázku (2) přejde pro $y=0$ na úlohu případu obrázku (1). Tento závěr není nijak překvapivý, protože pro tento model nepředpokládáme žádné zpoždění zatáčení a navíc její rychlost je čistě dána její polohou a parametry $V$ a $h$ (tedy v tomto systému nepředpokládáme žádné "nabrání" kinetické energie z předchozí části trajektorie). Rovněž není překvapivé, že pro $y_0=0$ je ideální trajektorie symetrická podle osy $x=\frac{x_0}{2}$. Toto tvrzení si nyní dokažme.\\
 \\
-(pozn. tento důkaz stojí na předpokladu, že se objekt pohybuje symetricky pro osu $x$, ovšem předpis $x$-ové souřadnice je i v tomto jednoduchém silovém poly velmi složitý, proto ho nebudeme zkoumat a pouze tuto krásnou vlastnost předpokládejme)\\
-\\
+
 Z informace $y_0=0$ a vztahu ~\eqref{eq:70} dostáváme
 \begin{equation}
 	\label{eq:75}
@@ -321,7 +320,7 @@ Opět využijme vztahu ~\eqref{eq:71} a vyjádřeme $\beta$ jako $\beta (t)$
 \end{equation*}
 \begin{equation}
 	\label{eq:78}
-	\beta_\navext=\arctan(\frac{V}{h}t - \tan \beta_{\navext, \navend}).
+	\beta_\navext=\arctan\left( \frac{V}{h}t - \tan \beta_{\navext, \navend}\right) .
 \end{equation}
 V závěrečné fázi našeho dokazování si pomocí funkce $y(\beta_\navext)$, kterou si vyjádříme jako $y(t)$, ukážeme, že je symetrická podle času $\frac{t_{\navend, \navext}}{2}$, tedy že platí $y(\frac{t_{\navend, \navext}}{2}+\epsilon)=y(\frac{t_{\navend, \navext}}{2}-\epsilon)$.\\
 Začněme vyjádřením $y=y(t)$ ze vztahu ~\eqref{eq:65}
@@ -375,7 +374,7 @@ Ve výpočtu se nám objevila zajímavá identita $\cos \arctan$, pro kterou pla
 	\right)=
 \end{equation*}
 \begin{equation}
-	\label{eq:80}
+	\label{eq:81}
 	=h\left(
 	\sqrt{\left( \tan \beta_{\navext, \navend}\pm\epsilon -\tan \beta_{\navext, \navend}\right)^2 + 1 }
 	-
@@ -383,6 +382,17 @@ Ve výpočtu se nám objevila zajímavá identita $\cos \arctan$, pro kterou pla
 	\right)=h\left(\sqrt{\epsilon^2+1}-\frac{1}{\cos \beta_{\navext, \navend}}
 	\right)
 \end{equation}
-Tedy jsme dokázali, že řešení je symetrické podle bodu $x=\frac{x_0}{2}$ respektive podle času $t = \frac{ t_{\navend, \navext}}{2}$, kdy (podle fyzikálních představ) osu $x=\frac{x_0}{2}$ protíná. $\qed$
+Tedy jsme ukázali, že řešení se pohybuje symetricky podle času $t=\frac{ t_{\navend, \navext}}{2}$. To ovšem nedává tvrzení, jelikož nevíme, jak se řešení chová pro $x$-ovou souřadnici. Ta je ovšem analyticky složitá na řešení, avšak máme jiný způsob, jak získat dodatečnou onformaci a to pomocí okamžitého natočení $\beta_{\navext}(t)$, kterou jsme si při výpočtu odvodili.\\
+Aby naše tvrzení bylo dokázáno musíme ukázat, že platí $\beta_{\navext}(\frac{ t_{\navend, \navext}}{2}+\epsilon)=-\beta_{\navext}(\frac{ t_{\navend, \navext}}{2}-\epsilon)$. To již není žádný problém, jelikož platí
+\begin{equation*}
+	\beta_{\navext}\left( \frac{ t_{\navend, \navext}}{2}\pm\epsilon\right) =\arctan\left( \frac{V}{h}\left( \frac{ \frac{2h}{V}\tan\beta_{\navext, \navend}}{2}\pm\epsilon\right) - \tan \beta_{\navext, \navend}\right) 
+	= \arctan\left( \tan \beta_{\navext, \navend}\pm\epsilon - \tan \beta_{\navext, \navend}\right)
+	=\arctan(\pm\epsilon)
+\end{equation*}
+\begin{equation}
+	\label{eq:82}
+	\implies \beta_{\navext}\left( \frac{ t_{\navend, \navext}}{2}\pm\epsilon\right) =\pm\arctan(\epsilon).
+\end{equation}
+Tedy z ~\eqref{eq:82} vidíme, že natočení je rovněž symetrické podle času $t=\frac{ t_{\navend, \navext}}{2}$ (přesněji řečeno lichá vzhledem k tomuto času). S touto a ještě informací o závislosti $y$-ové složky (která je naopak sudá vzhledem k tomuto času) dostáváme tvrzení. $\qed$
 
 \end{document}
