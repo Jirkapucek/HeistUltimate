@@ -63,7 +63,7 @@ Kde poslední rovnici lze vyřešit explicitně pomocí separace proměnných,
   \label{eq:63}
   \tan \beta_{\navext} -  \tan \beta_{\navext, \navend} = \frac{V}{h} (t - t_{\navend, \navext}), 
 \end{equation}
-kde jsme využili následující značení $\beta_{\navext, \navend} = _{\bydefinition} \left. \beta_{\navext} \right|_{t = t_{\navend, \navext}} $. (Řešení rozepisujeme záměrně tak aby obsahovalo konečný čas, protože ten je co chceme.) Jelikož $\beta_{\navext}$ je ryze rostoucí funkcí času $t$, tak můžeme provést záměnu proměnných a přepsat ~\eqref{eq:61} jako
+kde jsme využili následující značení $\beta_{\navext, \navend} = _{\bydefinition} \left. \beta_{\navext} \right|_{t = t_{\navend, \navext}} $. (Řešení rozepisujeme záměrně tak, aby obsahovalo konečný čas, protože ten je co chceme.) Jelikož $\beta_{\navext}$ je ryze rostoucí funkcí času $t$, tak můžeme provést záměnu proměnných a přepsat ~\eqref{eq:61} jako
 $
   \dd{y_{\navext}}{\beta_{\navext}} \dd{\beta_{\navext}}{t}
   =
@@ -108,59 +108,61 @@ což implikuje
   \label{eq:67}
   x_{\navext}(\beta_{\navext})
   =
--
-  \frac{h}{2}
-  \left(
-    \ln
-    \frac{\cos \frac{\beta_{\navext, \navend}}{2} + \sin \frac{\beta_{\navext, \navend}}{2}}{\cos \frac{\beta_{\navext, \navend}}{2} - \sin \frac{\beta_{\navext, \navend}}{2}}
--
-    \ln
-    \frac{\cos \frac{\beta_{\navext}}{2} + \sin \frac{\beta_{\navext}}{2}}{\cos \frac{\beta_{\navext}}{2} - \sin \frac{\beta_{\navext}}{2}}
-    +
-    \left(
-      \frac{1}{\cos \beta_{\navext}}
-      -
-      \frac{2}{\cos \beta_{\navext, \navend}}
-    \right)
-    \tan\beta_{\navext}
-+
- \frac{ \tan\beta_{\navext, \navend}}{\cos \beta_{\navext, \navend}}
-  \right)
-  ,
+  \begin{Bmatrix}
+  	-
+  	\frac{h}{2}
+  	\left(
+  	\ln
+  	\frac{\cos \frac{\beta_{\navext, \navend}}{2} + \sin \frac{\beta_{\navext, \navend}}{2}}{\cos \frac{\beta_{\navext, \navend}}{2} - \sin \frac{\beta_{\navext, \navend}}{2}}
+  	-
+  	\ln
+  	\frac{\cos \frac{\beta_{\navext}}{2} + \sin \frac{\beta_{\navext}}{2}}{\cos \frac{\beta_{\navext}}{2} - \sin \frac{\beta_{\navext}}{2}}
+  	+
+  	\left(
+  	\frac{1}{\cos \beta_{\navext}}
+  	-
+  	\frac{2}{\cos \beta_{\navext, \navend}}
+  	\right)
+  	\tan\beta_{\navext}
+  	+
+  	\frac{ \tan\beta_{\navext, \navend}}{\cos \beta_{\navext, \navend}}
+  	\right)
+  \end{Bmatrix}
+	,
 \end{equation}
 v předchozím jsme znovu využily faktu, že konečná poloha je v počátku, takže platí: $x_{\navext}(\beta_{\navext, \navend}) = 0$. Nyní sjednotíme rovnici ~\eqref{eq:67} a ~\eqref{eq:65}. Počáteční pozice musí splňovat $ \left. \vec{x} \right|_{t=t_\navstart} = _{\bydefinition} \vec{x}_{\navstart}$, takže dostáváme následující systém rovnic
 \begin{equation}
   \label{eq:68}
-  \vec{x}_{\navstart}
-  =
-  \begin{bmatrix}
- -
-  \frac{h}{2}
-  \left(
-    \ln
-    \frac{\cos \frac{\beta_{\navext, \navend}}{2} + \sin \frac{\beta_{\navext, \navend}}{2}}{\cos \frac{\beta_{\navext, \navend}}{2} - \sin \frac{\beta_{\navext, \navend}}{2}}
--
-    \ln
-    \frac{\cos \frac{\beta_{\navext, \navstart}}{2} + \sin \frac{\beta_{\navext, \navstart}}{2}}{\cos \frac{\beta_{\navext, \navstart}}{2} - \sin \frac{\beta_{\navext, \navstart}}{2}}
-    +
-    \left(
-      \frac{1}{\cos \beta_{\navext, \navstart}}
-      -
-      \frac{2}{\cos \beta_{\navext, \navend}}
-    \right)
-    \tan\beta_{\navext, \navstart}
-+
- \frac{ \tan\beta_{\navext, \navend}}{\cos \beta_{\navext, \navend}}
-\right)
-\\
-    h
-  \left(
-    \frac{1}{\cos \beta_{\navext, \navstart}}
-    -
-    \frac{1}{\cos \beta_{\navext, \navend}}
-  \right)
-\end{bmatrix}
-.
+  {\tiny \vec{x}_{\navstart}
+  	=
+  	\begin{bmatrix}
+  		-
+  		\frac{h}{2}
+  		\left(
+  		\ln
+  		\frac{\cos \frac{\beta_{\navext, \navend}}{2} + \sin \frac{\beta_{\navext, \navend}}{2}}{\cos \frac{\beta_{\navext, \navend}}{2} - \sin \frac{\beta_{\navext, \navend}}{2}}
+  		-
+  		\ln
+  		\frac{\cos \frac{\beta_{\navext, \navstart}}{2} + \sin \frac{\beta_{\navext, \navstart}}{2}}{\cos \frac{\beta_{\navext, \navstart}}{2} - \sin \frac{\beta_{\navext, \navstart}}{2}}
+  		+
+  		\left(
+  		\frac{1}{\cos \beta_{\navext, \navstart}}
+  		-
+  		\frac{2}{\cos \beta_{\navext, \navend}}
+  		\right)
+  		\tan\beta_{\navext, \navstart}
+  		+
+  		\frac{ \tan\beta_{\navext, \navend}}{\cos \beta_{\navext, \navend}}
+  		\right)
+  		\\
+  		h
+  		\left(
+  		\frac{1}{\cos \beta_{\navext, \navstart}}
+  		-
+  		\frac{1}{\cos \beta_{\navext, \navend}}
+  		\right)
+  	\end{bmatrix}
+  	.}
 \end{equation}
 Jelikož známe $\vec{x}_{\navstart}$, tak je nám jasné, že ~\eqref{eq:68} je systém dvou nelineárních algebraických rovnic pro dvě neznámé: $\beta_{\navext, \navend}$ a $\beta_{\navext, \navstart}$. Jakmile získáme jejich hodnoty, tak už jen stačí použít rovnice ~\eqref{eq:63} k získání konečného času.
 
@@ -175,39 +177,39 @@ stačí první vyřešit náš systém nelineárních algebraických rovnic
   \label{eq:69}
   \begin{equation}
     \label{eq:70}
-  \begin{bmatrix}
-    x_{\navstart} \\
-    y_{\navstart}
-  \end{bmatrix}
-  =
-  \begin{bmatrix}
- -
- \frac{h}{2}
- \left(
- \ln
- \frac{\cos \frac{\beta_{\navext, \navend}}{2} + \sin \frac{\beta_{\navext, \navend}}{2}}{\cos \frac{\beta_{\navext, \navend}}{2} - \sin \frac{\beta_{\navext, \navend}}{2}}
- -
- \ln
- \frac{\cos \frac{\beta_{\navext, \navstart}}{2} + \sin \frac{\beta_{\navext, \navstart}}{2}}{\cos \frac{\beta_{\navext, \navstart}}{2} - \sin \frac{\beta_{\navext, \navstart}}{2}}
- +
- \left(
- \frac{1}{\cos \beta_{\navext, \navstart}}
- -
- \frac{2}{\cos \beta_{\navext, \navend}}
- \right)
- \tan\beta_{\navext, \navstart}
- +
- \frac{ \tan\beta_{\navext, \navend}}{\cos \beta_{\navext, \navend}}
- \right)
- \\
- h
- \left(
- \frac{1}{\cos \beta_{\navext, \navstart}}
- -
- \frac{1}{\cos \beta_{\navext, \navend}}
- \right)
-\end{bmatrix}
-,
+    {\tiny \begin{bmatrix}
+    		x_{\navstart} \\
+    		y_{\navstart}
+    	\end{bmatrix}
+    	=
+    	\begin{bmatrix}
+    		-
+    		\frac{h}{2}
+    		\left(
+    		\ln
+    		\frac{\cos \frac{\beta_{\navext, \navend}}{2} + \sin \frac{\beta_{\navext, \navend}}{2}}{\cos \frac{\beta_{\navext, \navend}}{2} - \sin \frac{\beta_{\navext, \navend}}{2}}
+    		-
+    		\ln
+    		\frac{\cos \frac{\beta_{\navext, \navstart}}{2} + \sin \frac{\beta_{\navext, \navstart}}{2}}{\cos \frac{\beta_{\navext, \navstart}}{2} - \sin \frac{\beta_{\navext, \navstart}}{2}}
+    		+
+    		\left(
+    		\frac{1}{\cos \beta_{\navext, \navstart}}
+    		-
+    		\frac{2}{\cos \beta_{\navext, \navend}}
+    		\right)
+    		\tan\beta_{\navext, \navstart}
+    		+
+    		\frac{ \tan\beta_{\navext, \navend}}{\cos \beta_{\navext, \navend}}
+    		\right)
+    		\\
+    		h
+    		\left(
+    		\frac{1}{\cos \beta_{\navext, \navstart}}
+    		-
+    		\frac{1}{\cos \beta_{\navext, \navend}}
+    		\right)
+    	\end{bmatrix}
+    	,}  
 \end{equation}
 \clearpage
 z něho získáme hodnoty $\beta_{\navext, \navstart}$ a $\beta_{\navext, \navend}$. V rovnici
@@ -324,8 +326,7 @@ Opět využijme vztahu ~\eqref{eq:71} a vyjádřeme $\beta$ jako $\beta (t)$
 \end{equation}
 V závěrečné fázi našeho dokazování si pomocí funkce $y(\beta_\navext)$, kterou si vyjádříme jako $y(t)$, ukážeme, že je symetrická podle času $\frac{t_{\navend, \navext}}{2}$, tedy že platí $y(\frac{t_{\navend, \navext}}{2}+\epsilon)=y(\frac{t_{\navend, \navext}}{2}-\epsilon)$.\\
 Začněme vyjádřením $y=y(t)$ ze vztahu ~\eqref{eq:65}
-\begin{equation}
-	\label{eq:79}
+\begin{equation*}
 	y(\beta_\navext(t))=h
 	\left(
 	\frac{1}{\cos \beta_{\navext}(t)}
@@ -337,7 +338,7 @@ Začněme vyjádřením $y=y(t)$ ze vztahu ~\eqref{eq:65}
 	-
 	\frac{1}{\cos \beta_{\navext, \navend}}
 	\right)=
-\end{equation}
+\end{equation*}
 \begin{equation*}
 	=h
 	\left(
@@ -394,5 +395,33 @@ Aby naše tvrzení bylo dokázáno musíme ukázat, že platí $\beta_{\navext}(
 	\implies \beta_{\navext}\left( \frac{ t_{\navend, \navext}}{2}\pm\epsilon\right) =\pm\arctan(\epsilon).
 \end{equation}
 Tedy z ~\eqref{eq:82} vidíme, že natočení je rovněž symetrické podle času $t=\frac{ t_{\navend, \navext}}{2}$ (přesněji řečeno lichá vzhledem k tomuto času). S touto a ještě informací o závislosti $y$-ové složky (která je naopak sudá vzhledem k tomuto času) dostáváme tvrzení. $\qed$
+\section{Obecné větrné pole}
+Nyní budeme pracovat s obecným statickým silovým polem tedy s
+\label{eq:56}
+\begin{align}
+	\label{eq:83}
+	u &= u(x_{\navext},y_{\navext}), \\
+	\label{eq:84}
+	v &= v(x_{\navext},y_{\navext}).
+\end{align}
+Ze vztahů ~\eqref{eq:83}, ~\eqref{eq:84} se nám soustava obyčejných diferenciálních rovnic změní na tvar
+\begin{equation}
+	\label{eq:85}
+	\dd{x_{\navext}}{t}=
+	V \cos \beta_{\navext} + u(x_{\navext},y_{\navext}),
+\end{equation}
+\begin{equation}
+	\label{eq:86}
+	\dd{x_{\navext}}{t}
+	=
+	V \cos \beta_{\navext} + u(x_{\navext},y_{\navext}),
+\end{equation}
+\begin{equation}
+	\label{eq:87}
+	\dd{\beta_\navext}{t}
+	=
+	\frac{\partial v}{\partial x}(x_{\navext},y_{\navext})\sin^2 \beta_{\navext}+\left(\frac{\partial u}{\partial x}(x_{\navext},y_{\navext})-\frac{\partial v}{\partial y}(x_{\navext},y_{\navext})\right)\sin \beta_{\navext}\cos \beta_{\navext}-\frac{\partial u}{\partial y}(x_{\navext},y_{\navext})\cos^2 \beta_{\navext},
+\end{equation}
+kde poslední rovnice ~\eqref{eq:87} je známá jako \textit{Zermelova navigační rovnice}.
 
 \end{document}
