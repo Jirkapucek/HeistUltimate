@@ -19,13 +19,13 @@
 \input{vit-prusa-macros-experimental}
 \input{navigation-macros}
 
-\title{Pohyb Vzducholod\v{E} v lineárním v\v{E}trném poli}
+\title{Pohyb Vzducholod\v{E} ve v\v{E}trném poli}
 \renewcommand{\contentsname}{Obsah}
 \renewcommand{\abstractname}{Abstrakt}
 
 \begin{document}
 \maketitle
-\section{Teoretický postup}
+\section{Odvození pro speciální lineární pole}
 \label{sec:teorie}
 V případě větrného pole závislého lineárně na pozici se problém hledání nejkratšího letu výrazně zjednoduší. \\
 Uvažujme tedy následující větrné pole:
@@ -322,9 +322,9 @@ Opět využijme vztahu ~\eqref{eq:71} a vyjádřeme $\beta$ jako $\beta (t)$
 \end{equation*}
 \begin{equation}
 	\label{eq:78}
-	\beta_\navext=\arctan\left( \frac{V}{h}t - \tan \beta_{\navext, \navend}\right) .
+	\beta_\navext(t)=\arctan\left( \frac{V}{h}t - \tan \beta_{\navext, \navend}\right) .
 \end{equation}
-V závěrečné fázi našeho dokazování si pomocí funkce $y(\beta_\navext)$, kterou si vyjádříme jako $y(t)$, ukážeme, že je symetrická podle času $\frac{t_{\navend, \navext}}{2}$, tedy že platí $y(\frac{t_{\navend, \navext}}{2}+\epsilon)=y(\frac{t_{\navend, \navext}}{2}-\epsilon)$.\\
+V závěrečné fázi našeho dokazování si pomocí funkce $y(\beta_\navext)$, kterou si vyjádříme jako $y(t)$, ukážeme, že je symetrická podle času $\frac{t_{\navend, \navext}}{2}$, tedy že platí $y(\frac{t_{\navend, \navext}}{2}+\epsilon)=y(\frac{t_{\navend, \navext}}{2}-\epsilon)$, kde $\absnorm{\epsilon}\leq\frac{t_{\navend, \navext}}{2}$.\\
 Začněme vyjádřením $y=y(t)$ ze vztahu ~\eqref{eq:65}
 \begin{equation*}
 	y(\beta_\navext(t))=h
@@ -383,7 +383,7 @@ Ve výpočtu se nám objevila zajímavá identita $\cos \arctan$, pro kterou pla
 	\right)=h\left(\sqrt{\epsilon^2+1}-\frac{1}{\cos \beta_{\navext, \navend}}
 	\right)
 \end{equation}
-Tedy jsme ukázali, že řešení se pohybuje symetricky podle času $t=\frac{ t_{\navend, \navext}}{2}$. To ovšem nedává tvrzení, jelikož nevíme, jak se řešení chová pro $x$-ovou souřadnici. Ta je ovšem analyticky složitá na řešení, avšak máme jiný způsob, jak získat dodatečnou informaci a to pomocí okamžitého natočení $\beta_{\navext}(t)$, kterou jsme si při výpočtu odvodili.\\
+Tedy jsme ukázali, že řešení se pohybuje symetricky podle času $t=\frac{ t_{\navend, \navext}}{2}$ pro osu $x=0$. To ovšem nedává tvrzení, jelikož nevíme, jak se řešení chová pro $x$-ovou souřadnici. Ta je ovšem analyticky složitá na řešení, avšak máme jiný způsob, jak získat dodatečnou informaci a to pomocí okamžitého natočení $\beta_{\navext}(t)$, kterou jsme si při výpočtu odvodili.\\
 Aby naše tvrzení bylo dokázáno musíme ukázat, že platí $\beta_{\navext}(\frac{ t_{\navend, \navext}}{2}+\epsilon)=-\beta_{\navext}(\frac{ t_{\navend, \navext}}{2}-\epsilon)$. To již není žádný problém, jelikož platí
 \begin{equation*}
 	\beta_{\navext}\left( \frac{ t_{\navend, \navext}}{2}\pm\epsilon\right) =\arctan\left( \frac{V}{h}\left( \frac{ \frac{2h}{V}\tan\beta_{\navext, \navend}}{2}\pm\epsilon\right) - \tan \beta_{\navext, \navend}\right) 
@@ -394,34 +394,161 @@ Aby naše tvrzení bylo dokázáno musíme ukázat, že platí $\beta_{\navext}(
 	\label{eq:82}
 	\implies \beta_{\navext}\left( \frac{ t_{\navend, \navext}}{2}\pm\epsilon\right) =\pm\arctan(\epsilon).
 \end{equation}
-Tedy z ~\eqref{eq:82} vidíme, že natočení je rovněž symetrické podle času $t=\frac{ t_{\navend, \navext}}{2}$ (přesněji řečeno lichá vzhledem k tomuto času). S touto a ještě informací o závislosti $y$-ové složky (která je naopak sudá vzhledem k tomuto času) dostáváme tvrzení. $\qed$
+Tedy z ~\eqref{eq:82} vidíme, že natočení je rovněž symetrické podle času $t=\frac{ t_{\navend, \navext}}{2}$ (přesněji řečeno lichá vzhledem k tomuto času). S touto a ještě informací o závislosti $y$-ové složky (která je naopak sudá vzhledem k tomuto času) dostáváme tvrzení. $\qed$\\
 \section{Obecné větrné pole}
 Nyní budeme pracovat s obecným statickým silovým polem tedy s
 \label{eq:56}
+\begin{subequations}
 \begin{align}
 	\label{eq:83}
 	u &= u(x_{\navext},y_{\navext}), \\
 	\label{eq:84}
 	v &= v(x_{\navext},y_{\navext}).
 \end{align}
+\end{subequations}
 Ze vztahů ~\eqref{eq:83}, ~\eqref{eq:84} se nám soustava obyčejných diferenciálních rovnic změní na tvar
-\begin{equation}
-	\label{eq:85}
-	\dd{x_{\navext}}{t}=
-	V \cos \beta_{\navext} + u(x_{\navext},y_{\navext}),
-\end{equation}
-\begin{equation}
-	\label{eq:86}
-	\dd{x_{\navext}}{t}
-	=
-	V \cos \beta_{\navext} + u(x_{\navext},y_{\navext}),
-\end{equation}
-\begin{equation}
-	\label{eq:87}
-	\dd{\beta_\navext}{t}
-	=
-	\frac{\partial v}{\partial x}(x_{\navext},y_{\navext})\sin^2 \beta_{\navext}+\left(\frac{\partial u}{\partial x}(x_{\navext},y_{\navext})-\frac{\partial v}{\partial y}(x_{\navext},y_{\navext})\right)\sin \beta_{\navext}\cos \beta_{\navext}-\frac{\partial u}{\partial y}(x_{\navext},y_{\navext})\cos^2 \beta_{\navext},
-\end{equation}
+\begin{subequations}
+	\label{eq:59}
+	\begin{align}
+		\label{eq:85}
+		\dd{x_{\navext}}{t}
+		&=
+		V \cos \beta_{\navext} - \frac{V}{h}y_{\navext},  \\
+		\label{eq:86}
+		\dd{y_{\navext}}{t}
+		&=
+		V \sin \beta_{\navext},  \\
+		\label{eq:87}
+		\dd{\beta_\navext}{t}
+		&=
+		\frac{\partial v}{\partial x}(x_{\navext},y_{\navext})\sin^2 \beta_{\navext}+\left(\frac{\partial u}{\partial x}(x_{\navext},y_{\navext})-\frac{\partial v}{\partial y}(x_{\navext},y_{\navext})\right)\sin \beta_{\navext}\cos \beta_{\navext}-\frac{\partial u}{\partial y}(x_{\navext},y_{\navext})\cos^2 \beta_{\navext},
+		.
+	\end{align}
+\end{subequations}
 kde poslední rovnice ~\eqref{eq:87} je známá jako \textit{Zermelova navigační rovnice}.
-
+\subsection*{Krok 1}
+Vyřešíme soustavu obyčejných diferenciálních rovnic s obecným silovým polem $u(x_{\navext},y_{\navext})$, $v(x_{\navext},y_{\navext})$ pro počáteční podmínky $x_0$, $y_0$ a parametrem V s obecnou $\beta_0$.
+\begin{verbatim*}
+	dudx:=D[u,x[t]]
+	dudy:=D[u,y[t]]
+	dvdx:=D[v,x[t]]
+	dvdy:=D[v,y[t]]
+	
+	eqs={x'[t]==VCos[\[Beta][t]]+u,y'[t]==VSin[\[Beta][t]]+v,\[Beta]'[t]==dvdx*Sin[\[Beta][t]]^2+(dudx-dvdy)*
+		Sin[\[Beta][t]]Cos[\[Beta][t]]-dudy*Cos[\[Beta][t]]^2};
+	
+	sol=ParametricNDSolve[Join[eqs,{x[0]==x0,y[0]==y0,\[Beta][0]==\[Beta]0}],{x,y,\[Beta]},{t,0,10},
+	{\[Beta]0}]
+\end{verbatim*}
+\subsection*{Krok 2}
+"Loupežnickou" metodou střelby volíme různé počáteční podmínky pro $\beta_0$, která nám dá představu, jakou hodnotu volit v dalším kroku.
+\begin{verbatim*}
+	ParametricPlot[Table[{x[\[Beta]0][t],y[\[Beta]0][t]}/.sol,{\[Beta]0,4.5,5.5,0.3}],{t,0,2},Frame->True
+	,PlotRange->{{-10,10},{-10,10}}]
+\end{verbatim*}
+\begin{minipage}{\textwidth}
+	\begin{minipage}[b]{0.5\textwidth}
+		\centering
+		\includegraphics[width=0.9\textwidth]{obecne1}
+		\captionof*{figure}{\textbf{Obrázek 3.} $u=(x+y)^2-4y$, $v=x(y+1)$}
+	\end{minipage}
+	\begin{minipage}[b]{0.5\textwidth}
+		\centering
+		\includegraphics[width=0.9\textwidth]{obecne2}
+		\captionof*{figure}{\textbf{Obrázek 4.} Metoda střelby}
+	\end{minipage}
+	\hfill
+\end{minipage}
+\subsection*{Krok 3}
+Hledáme řešení, které končí v počátku pro $t_{\navend, \navext}$, a řešení si vykreslíme (parametry $a$ a $b$ volíme tak, aby řešení zkonvergovalo viz Krok 2).
+\begin{verbatim*}
+	koren=FindRoot[{x[\[Beta]0][tend]==0,y[\[Beta]0][tend]==0}/.sol,{{\[Beta]0,a},{tend,b}}]
+	
+	field=VectorPlot[{u(x,y),v(x,y)},{x,-10,10},{y,-10,10},VectorScaling->Automatic,VectorSizes->
+	AutomaticPlotTheme->"Scientific"]
+	
+	ParametricPlot[{x[\[Beta]0/.koren][t],y[\[Beta]0/.koren][t]}/.sol,{t,0,tend/.koren},Frame->True,
+	PlotRange->{{-1,1},{-1,1}}];
+	
+	Show[field,plot]
+\end{verbatim*}
+\begin{minipage}{\textwidth}
+	\centering
+	\begin{minipage}[b]{0.5\textwidth}
+		\centering
+		\includegraphics[width=0.9\textwidth]{obecne3}
+		\captionof*{figure}{\textbf{Obrázek 5.} Optimální řešení}
+	\end{minipage}
+	\hfill
+\end{minipage}\\
+\section{Reálná situace}
+Pro reálný systém postupujeme analogicky k případu s obecným silovým polem. Jediný problém nastává v tom si vytvořit pole dané reálnými podmínkami.
+\subsection*{Krok 1}
+Volba počátečního a konečného místa společně s časem, který nás zajímá.
+\begin{verbatim*}
+	startpos=lokace["Počátek"]
+	endpos=lokace["Konec"]
+	startcas=DateObject[{"rok","měsíc","den","hodina"}]
+\end{verbatim*}
+\subsection*{Krok 2}
+Nyní využijeme příkazy pro zjištění polohy našich míst, do kterých budeme cestovat.
+\begin{verbatim*}
+	CityData["Místo","Coordinates"]
+	Entity["Country","CzechRepublic"]
+\end{verbatim*}
+\subsection*{Krok 3}
+Vytvoříme silové pole.
+\begin{verbatim*}
+	CzechiaGrid=Flatten[CoordinateBoundsArray[GeoBounds[CzechRep],0.8],1]
+	
+	CzechiaGridWindData=WindVectorData[CzechiaGrid,startcas,"DownwindGeoVectorENU"]
+	CzechiaGridWindData["Vector"]
+	CzechiaGridWindData2=SynthesizeMissingValues[CzechiaGridWindData["Vector"],MissingValuePatternMissing
+	["NotAvailable"]]
+	
+	CzechiaGridmetr={(#[[2]]-endpos[[2]])*dg[[2]],(#[[1]]-endpos[[1]])*dg[[1]]}&/@CzechiaGrid;
+	CzechiaGridWind=QuantityMagnitude[UnitConvert[CzechiaGridWindData2, "m/s"]]
+	Transpose[{CzechiaGridmetr,CzechiaGridWind}]
+	
+	wind=Interpolation[Transpose[{CzechiaGridmetr,CzechiaGridWind}]]
+\end{verbatim*}
+\subsection*{Krok 4}
+Převedeme počáteční místo na data a vyřešíme soustavu diferenciálních rovnic, jako v případě s obecným silovým polem.
+\begin{verbatim*}
+	x0={((startpos-endpos)*dg)[[2]],((startpos-endpos)*dg)[[1]]}
+	
+	sol=ParametricNDSolve[Join[eqs,{x[0]==x0[[1]],y[0]==x0[[2]],\[Beta][0]==\[Beta]0}],{x,y,\[Beta]},
+	{t,0,16*3600},{\[Beta]0}]...
+\end{verbatim*}
+\subsection*{Krok 5}
+Vykreslíme si řešení a jásáme nad tím, jak jsme šikovní.
+\begin{verbatim*}
+	Show[CzechiaContour2,trajectory,PlotRange->Automatic,AspectRatio->0.55,Axes->False]
+	
+	CzechiaStreamPlot=GeoStreamPlot[CzechiaGridWindData,GeoBackground->"StreetMap",
+	VectorColorFunction->None,VectorStyle->RGBColor[0.5,0.26,0.93]]
+	
+\end{verbatim*}
+\begin{minipage}{\textwidth}
+	\begin{minipage}[b]{0.5\textwidth}
+		\centering
+		\includegraphics[width=0.9\textwidth]{mapa1}
+		\captionof*{figure}{\textbf{Obrázek 6.} Vygenerované silové pole}
+	\end{minipage}
+	\begin{minipage}[b]{0.5\textwidth}
+		\centering
+		\includegraphics[width=0.9\textwidth]{mapa2}
+		\captionof*{figure}{\textbf{Obrázek 7.} Optimální řešení (mapa)}
+	\end{minipage}
+	\hfill
+\end{minipage}
+\begin{minipage}{\textwidth}
+	\centering
+	\begin{minipage}[b]{0.5\textwidth}
+		\centering
+		\includegraphics[width=0.9\textwidth]{mapa3}
+		\captionof*{figure}{\textbf{Obrázek 8.} Optimální řešení (graf)}
+	\end{minipage}
+	\hfill
+\end{minipage}\\
 \end{document}
